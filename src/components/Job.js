@@ -22,14 +22,9 @@ const query = graphql`
 const Job = () => {
     const data = useStaticQuery(query);
     console.log(data)
-    const [value, setValue] = useState(false);
+    const [value, setValue] = useState(0);
     const { allStrapiJob: { nodes:jobs } } = data;
-    const {company, position, date, descr} = jobs[0];
-
-    const handleClick = () => {
-
-    }
-
+    const {company, position, date, descr} = jobs[value];
 
     return (
         <div className='px-6'>
@@ -43,7 +38,7 @@ const Job = () => {
                     <span className='flex items-center'>
                       <VscArrowRight/>
                     </span>
-                    <button key={index} onClick={handleClick} className='flex flex-row'>
+                    <button key={index} onClick={() => setValue(index)} className='flex flex-row'>
                       {item.company}
                     </button>
                   </div>               

@@ -31,10 +31,19 @@ const Job = () => {
              <h1>Job component</h1>
             <h3>{company}</h3>
             <h4>{position}</h4>
+            <p>
+                {desc.map((item, index) => {
+                    return (
+                        <div key={index}>
+                            {item.name}
+                        </div>
+                    )
+                })}
+            </p>
             <div className='flex flex-row justify-between'>
               {jobs.map((item, index) => {
                 return (
-                  <div className='flex flex-row mb-2' key={index}>
+                  <div className='flex flex-row p-4' key={index}>
                     <span className='flex items-center'>
                       <VscArrowRight/>
                     </span>

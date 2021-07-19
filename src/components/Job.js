@@ -7,7 +7,7 @@ const query = graphql`
     allStrapiJob {
         nodes {
           company
-          descr {
+          desc {
             id
             name
           }
@@ -24,7 +24,7 @@ const Job = () => {
     console.log(data)
     const [value, setValue] = useState(0);
     const { allStrapiJob: { nodes:jobs } } = data;
-    const {company, position, date, descr} = jobs[value];
+    const {company, position, date, desc} = jobs[value];
 
     return (
         <div className='px-6'>
@@ -34,11 +34,15 @@ const Job = () => {
             <div className='flex flex-row justify-between'>
               {jobs.map((item, index) => {
                 return (
-                  <div className='flex flex-row mb-2'>
+                  <div className='flex flex-row mb-2' key={index}>
                     <span className='flex items-center'>
                       <VscArrowRight/>
                     </span>
-                    <button key={index} onClick={() => setValue(index)} className='flex flex-row'>
+                    <button 
+                      key={index} 
+                      onClick={() => setValue(index)} 
+                      className={ index === value ? 'flex flex-row bg-black text-white' : 'flex flex-row text-blue'}
+                      >
                       {item.company}
                     </button>
                   </div>               
